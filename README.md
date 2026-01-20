@@ -2746,5 +2746,139 @@ System survive করে
 
 
 
+
+1️⃣ গ্রহের কক্ষপথ (Planet Orbit Simulation)
+
+Python
+import numpy as np
+import matplotlib.pyplot as plt
+
+G = 6.674e-11
+M = 1.989e30  # সূর্যের ভর
+
+r = 1.5e11
+v = 30000
+dt = 60
+
+x, y = r, 0
+vx, vy = 0, v
+
+xs, ys = [], []
+
+for _ in range(10000):
+    r = np.sqrt(x**2 + y**2)
+    a = -G*M/(r**3)
+    ax = a*x
+    ay = a*y
+
+    vx += ax*dt
+    vy += ay*dt
+    x += vx*dt
+    y += vy*dt
+
+    xs.append(x)
+    ys.append(y)
+
+plt.plot(xs, ys)
+plt.scatter(0,0,color='orange')
+plt.show()
+👉 এটা দিয়ে পৃথিবী সূর্যের চারপাশে ঘোরা দেখা যায়।
+2️⃣ ব্ল্যাক হোল (Schwarzschild Radius)
+
+Python
+def schwarzschild_radius(mass):
+    G = 6.674e-11
+    c = 3e8
+    return (2*G*mass)/(c**2)
+
+sun_mass = 1.989e30
+print(schwarzschild_radius(sun_mass), "meters")
+👉 সূর্য ব্ল্যাক হোল হলে কত বড় হতো 😱
+3️⃣ আলোর গতি ও সময় ধীর হওয়া (Time Dilation)
+
+Python
+import math
+
+c = 3e8
+v = 0.9 * c
+
+time_dilation = 1 / math.sqrt(1 - (v**2/c**2))
+print(time_dilation)
+👉 Near light-speed গেলে সময় ধীরে চলে ⏳
+4️⃣ মহাবিশ্ব সম্প্রসারণ (Hubble Law)
+
+Python
+H0 = 70  # km/s/Mpc
+distance = 100  # Mpc
+
+velocity = H0 * distance
+print("Galaxy speed:", velocity, "km/s")
+👉 গ্যালাক্সি দূরে গেলে দ্রুত পালায় 🌌
+5️⃣ নক্ষত্রের তাপমাত্রা (Star Color Logic)
+
+Python
+def star_color(temp):
+    if temp > 10000:
+        return "Blue"
+    elif temp > 6000:
+        return "White"
+    elif temp > 5000:
+        return "Yellow"
+    else:
+        return "Red"
+
+print(star_color(5800))  # সূর্য
+6️⃣ ডার্ক ম্যাটার রোটেশন কার্ভ (Concept)
+
+Python
+import numpy as np
+
+r = np.linspace(1,100,100)
+v_visible = np.sqrt(1/r)
+v_dark = np.sqrt(1/(r+5))
+
+import matplotlib.pyplot as plt
+plt.plot(r, v_visible, label="Visible Matter")
+plt.plot(r, v_dark, label="With Dark Matter")
+plt.legend()
+plt.show()
+👉 কেন ডার্ক ম্যাটার দরকার বোঝায় 🧠
+7️⃣ চাঁদের গ্রাভিটি
+
+Python
+G = 6.674e-11
+M_moon = 7.35e22
+r = 1.74e6
+
+g = G*M_moon/(r**2)
+print("Moon gravity:", g)
+8️⃣ বিগ ব্যাং টাইমলাইন (Logic Model)
+
+Python
+timeline = {
+    "0 sec": "Big Bang",
+    "3 min": "Hydrogen & Helium",
+    "380k years": "Light released",
+    "1 billion years": "Galaxies",
+    "13.8 billion": "Now"
+}
+
+for t, e in timeline.items():
+    print(t, "->", e)
+9️⃣ মহাবিশ্বের বয়স হিসাব
+
+Python
+H0 = 70 * 1000 / (3.086e22)
+age = 1 / H0
+print(age / (60*60*24*365*1e9), "billion years")
+🔟 AI দিয়ে মহাবিশ্ব ভবিষ্যৎ (Concept Code)
+
+Python
+import random
+
+future = ["Heat Death", "Big Rip", "Big Crunch"]
+print(random.choice(future))
+
+
 ## 📜 Official Footnote
 > "Abid-OS is a digital universe built on the foundation of family, respect, and infinite curiosity." - **Abid Hasan Shuvo**
